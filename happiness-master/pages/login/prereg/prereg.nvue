@@ -1,0 +1,38 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page class="white" fullscreen>
+			<register-bg></register-bg>
+			<register-body></register-body>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view @tap="reg">
+				<custom-button type="1" text="立即注册" width="600"></custom-button>
+			</view>
+			<view class="cts-empty-column"></view>
+			<view @tap="buy">
+				<custom-button type="2" text="办理聚福卡，即省1599/年" width="600" shadow></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" mainTitle=" " navbarColor="transparent" statusBarColor="transparent"></custom-navbar>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {reg} from '@/static/mixins/login/prereg/prereg.js'
+	export default {
+		mixins:[reg]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

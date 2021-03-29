@@ -1,0 +1,21 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'常见问题'" :rightText="'刷新'"></custom-navbar>
+		<custom-container-in-navbar-page :performance="true">
+			<cell v-for="(item,index) in group">
+				<custom-drawer :group="item.options" :title="item.title" :icon="item.icon"></custom-drawer>
+			</cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {question} from '@/static/mixins/mine/question/question.js'
+	export default {
+		mixins:[question]
+	}
+</script>
+
+<style>
+
+</style>

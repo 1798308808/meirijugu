@@ -1,0 +1,23 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page :fullscreen="true" :needMonitor="true">
+			<rank-bg></rank-bg>
+			<rank-user :name="user.name" :money="user.money" :rank="user.rank" :avatar="user.avatar"></rank-user>
+			<rank-list>
+				<rank-list-item v-for="(item,index) in group" :key="item.rank" :rank="item.rank" :name="item.name" :avatar="item.avatar" :money="item.money"></rank-list-item>
+			</rank-list>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" :mainTitle="'排行榜'" :navbarColor="navbar.nc" :statusBarColor="navbar.sb" :mainTitleColor="navbar.mt" :leftIcon="navbar.lc"></custom-navbar>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {rank} from '@/static/mixins/home/rank/rank.js'
+	export default {
+		mixins:[rank]
+	}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,37 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="title"></custom-navbar>
+		<custom-swiper-page v-if="options_group.length!=0"  :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :indicator_fixed="true">
+			<recommand-container  v-for="(item,index) in page_group" :key="item.name" :id="index" ref="page" :slot="item.name"  @returnLoadmore="getLoadmore">
+				<recommand-filter @returnFilters="getFilters" :id="index" slot="header" :group.sync="item.filters"></recommand-filter>
+				<template slot="body">
+					<custom-refresher color="#fff" indi_color="#333" center :refreshing.sync="item.refresh" @userRefreshing="goodsRefresh" :id="'_'+index"></custom-refresher>
+					<cell recycle="false" v-if="item.loading">
+						<custom-elements-loading bg="transparent"></custom-elements-loading>
+					</cell>
+					<cell v-for="(item,index) in item.data">
+						<home-double-column-goods :group_f="item"></home-double-column-goods>
+					</cell>
+					<cell>
+						<custom-loadmore :show_f="item.loadmore" :nomore_f="item.nomore"></custom-loadmore>
+					</cell>
+				</template>
+			</recommand-container>
+		</custom-swiper-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {rd} from '@/static/mixins/home/recommand/recommand.js'
+	import {rd_interaction} from '@/static/mixins/home/recommand/recommand_interaction.js'
+	import {rd_data} from '@/static/mixins/home/recommand/recommand_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[rd,rd_interaction,rd_data,unload]
+	}
+</script>
+
+<style>
+
+</style>

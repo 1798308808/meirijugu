@@ -1,0 +1,57 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page  :fullscreen="true" :performance="true" :needMonitor="true">
+			<cell recycle="false" ref="g0" @appear="show(0)">
+				<detail-banner :group="banner"></detail-banner>
+				<detail-boardcast :group="boardcast"></detail-boardcast>
+				<custom-navbar :navbarType="2" :mainTitle="' '" :leftIcon="'/static/back_w.png'" :statusBarColor="'rgba(0,0,0,0)'" :navbarColor="'rgba(255,255,255,0)'"></custom-navbar>
+			</cell>
+			<cell recycle="false">
+				<detail-main-detail :goods_detail="goods_detail">
+					<detail-discount v-for="(item,index) in discount" :key="item.id" :mute="item.mute" :title="item.title" :start="item.start" :end="item.end"></detail-discount>
+				</detail-main-detail>
+			</cell>
+			<cell  recycle="false" ref="g1">
+				<view class="cts-empty-column"></view>
+				<detail-goods-detail v-if="detail_group.length==0" :nodes="nodes"></detail-goods-detail>
+			</cell>
+			<cell v-for="(item,index) in detail_group" @appear="show(1)">
+				<detail-img-detail :img="item" :text="index==0?'商品详情':''"></detail-img-detail>
+			</cell>
+			<cell recycle="false" @appear="show(2)">
+				<detail-guess></detail-guess>
+			</cell>
+			<cell v-for="(item,index) in group" ref="goods">
+				<home-double-column-goods :group_f="item"></home-double-column-goods>
+			</cell>
+			<cell recycle="false">
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+			</cell>
+		</custom-container-in-navbar-page>
+		<detail-navbar :show_f="show_navbar" :current_f="current_area"></detail-navbar>
+		<detail-footer @returnShare="getShare" @returnBuy="getBuy" :collect_active="collect" :collect_loading="collect_loading" @returnCollect="starActive"></detail-footer>
+		<uni-popup ref="popup" type="bottom">
+			<detail-share></detail-share>
+		</uni-popup>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {detail} from '@/static/mixins/home/detail/detail.js'
+	import {detail_interaction} from '@/static/mixins/home/detail/detail_interaction.js'
+	import {detail_data} from '@/static/mixins/home/detail/detail_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[detail,detail_data,detail_interaction,unload]
+	}
+</script>
+
+<style lang="scss" scoped>
+	
+</style>

@@ -1,0 +1,35 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-simple-swiper :group="options_group" @returnTappedItem="switchSwiper" @returnLoadmore="loadMoreGoods" :disabled="dontmove" ref="search">
+			<header>
+				<recommand-filter @returnFilters="getFilters" :id="index" slot="header" :group.sync="filters"></recommand-filter>
+			</header>
+			<cell v-if="!cover&&group.length==0" recycle="false">
+				<custom-empty :txt="'没有相关商品'" :img="'/static/no_goods.png'" ></custom-empty>
+			</cell>
+			<cell v-for="(item,index) in group">
+				<home-single-column-goods :group_f="[item]"></home-single-column-goods>
+			</cell>
+			<cell>
+				<custom-loadmore :show_f="loadmore" :nomore_f="nomore"></custom-loadmore>
+			</cell>
+		</custom-simple-swiper>
+		<custom-navbar :statusBarColor="'#fff'" :navbarType="7" :inputVal.sync="val"></custom-navbar>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {searchResult} from '@/static/mixins/store/searchResult/searchResult.js'
+	import {searchResult_data} from '@/static/mixins/store/searchResult/searchResult_data.js'
+	import {searchResult_interaction} from '@/static/mixins/store/searchResult/searchResult_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[searchResult,searchResult_data,searchResult_interaction,unload],
+		
+	}
+</script>
+
+<style>
+
+</style>

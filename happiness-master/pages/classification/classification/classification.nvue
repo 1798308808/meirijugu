@@ -1,0 +1,26 @@
+<template>
+	<view>
+		<custom-container-for-tabbar>
+			<classification-navbar>
+				<custom-navbar :navbarType="12" :mainTitle="'深圳'"></custom-navbar>
+			</classification-navbar>
+			<custom-classification :group="group"></custom-classification>
+		</custom-container-for-tabbar>
+		<custom-skeleton v-if="showSkeleton" :type="1"></custom-skeleton>
+		<custom-page-loading :show_f="page_refresh"></custom-page-loading>
+	</view>
+</template>
+
+<script>
+	import {classification} from '@/static/mixins/classification/classification/classification.js'
+	import {cl_interaction} from '@/static/mixins/classification/classification/classification_interaction.js'
+	import {cl_data} from '@/static/mixins/classification/classification/classification_data.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default{
+		mixins:[classification,cl_data,cl_interaction,tabbar]
+	}
+</script>
+
+<style>
+
+</style>

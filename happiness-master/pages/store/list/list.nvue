@@ -1,0 +1,29 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page performance needRefresh :needLoadMore="loadmore_monitor" :refreshing="refresh" :loadMoreFlag="loadmore" ref="ctr"
+:nomoreFlag="nomore" @userRefreshing="refreshing" refreshColor="#333">
+			<cell>
+				<view class="cts-empty-column"></view>
+			</cell>
+			<cell v-for="(item,index) in goods">
+				<sindex-goods :group_f="item"></sindex-goods>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" :mainTitle="title"></custom-navbar>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {list} from '@/static/mixins/store/list/list.js'
+	import {list_data} from '@/static/mixins/store/list/list_data.js'
+	import {list_interaction} from '@/static/mixins/store/list/list_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[list,list_data,list_interaction,unload]
+	}
+</script>
+
+<style>
+
+</style>

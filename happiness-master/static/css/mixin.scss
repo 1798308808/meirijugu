@@ -1,0 +1,46 @@
+@mixin createBorder($name,$pos,$color,$type,$width) {
+	.cts-border-#{$pos}-#{$type}-#{$name}{
+		border-#{$pos}-style: $type;
+		border-#{$pos}-color: $color;
+		border-#{$pos}-width: $width;
+	}
+}
+@mixin createFullBorder($name,$type,$color,$width){
+	.cts-border-#{$name}{
+		border-style: $type;
+		border-color: $color;
+		border-width: $width;
+	}
+}
+@mixin createTransition($name,$prop,$duration,$time,$delay,$other_prop){
+	.cts-transition-#{$name}{
+		@if $other_prop !=null{
+			transition-property: $prop,$other_prop;
+		}
+		@else{
+			transition-property: $prop;
+		}
+		transition-timing-function: $time;
+		transition-duration: $duration;
+		@if $delay!=null{
+			transition-delay: $delay;
+		}
+	}
+}
+@mixin createPadding($name,$left,$right,$top,$bottom){
+	.cts-padding-#{$name}{
+		@if $left!=null{
+			padding-left: $left;
+		}
+		@if $right!=null{
+			padding-right: $right;
+		}
+		@if $top!=null{
+			padding-top: $top;
+		}
+		@if $bottom!=null{
+			padding-bottom: $bottom;
+		}
+	}
+}
+

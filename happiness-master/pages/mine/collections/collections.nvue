@@ -1,0 +1,47 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'我的收藏'"></custom-navbar>
+		<custom-simple-swiper :group="options_group" @returnTappedItem="switchSwiper" @returnLoadmore="loadMoreGoods" :disabled="dontmove" ref="s">
+			<custom-refresher indi_color="#333333" center="true" :refreshing.sync="refresh" @userRefreshing="refreshing" id="1"></custom-refresher>
+			<cell v-if="!cover&&!refresh&&group.length==0" recycle="false">
+				<custom-empty :txt="'您还没有收藏商品哦'" :img="'/static/no_collection.png'" :button="true" :button_text="'去逛逛'"></custom-empty>
+			</cell>
+			<cell v-for="(item,index) in group">
+				<view @tap="jump(item.id)">
+					<collections-item
+					:id="item.id"
+					:title="item.title"
+					:thumb="item.thumb"
+					:price="item.price"
+					:d_price="item.d_price"
+					:discount="item.discount"
+					:platform="item.platform"
+					:rewards="item.rewards"
+					:seckill="item.seckill"
+					:storeName="item.storeName"
+					:sales="item.sales"
+					></collections-item>
+				</view>
+			</cell>
+			<cell>
+				<custom-loadmore :show_f="loadmore" :nomore_f="nomore"></custom-loadmore>
+			</cell>
+		</custom-simple-swiper>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {collections} from '@/static/mixins/mine/collections/collections.js'
+	import {collections_data} from '@/static/mixins/mine/collections/collections_data.js'
+	import {collections_interaction} from '@/static/mixins/mine/collections/collections_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[collections,collections_data,collections_interaction,unload],
+		
+	}
+</script>
+
+<style>
+
+</style>

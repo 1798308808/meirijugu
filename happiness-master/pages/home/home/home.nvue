@@ -1,0 +1,96 @@
+<template>
+	<view class="home">
+		<custom-container-for-tabbar>
+			<home-top-background :group_f="current_background_color"></home-top-background>
+			<home-top-menu :bg_f="current_background_color" :group_f="menu_group" @returnHomeMenuToggle="toggleHomeMenuDisplay" :menu_toggle="menu_toggle"></home-top-menu>
+			<custom-navbar :navbarType="8" :statusBarColor="navbarColor"></custom-navbar>
+			<home-main-container :loadmore="loadmore" :nomore="nomore" :refresh="refresh" @returnRefreshHome="homeRefreshing" ref="home">
+				<cell recycle="false">
+					<home-banner-swiper :group_f="banner_group" @returnBannerTapped="bannerTapped"></home-banner-swiper>
+				</cell>
+				<cell recycle="false">
+					<home-top-billboard :group="top_billboard"></home-top-billboard>
+				</cell>
+				<cell recycle="false">
+					<home-subarea-entrance  :group_f="main_menu_group"></home-subarea-entrance>
+				</cell>
+				<cell recycle="false">
+					<custom-menu-swiper :group_f="subarea_item_group">
+						<home-king-kong :slot="'grid'+index" v-for="(item,index) in subarea_item_group" :key="'page'+index"
+						:group_f="item.data"></home-king-kong>
+					</custom-menu-swiper>
+				</cell>
+				<cell recycle="false">
+					<home-boardcast-bar :group_f="boardcast"></home-boardcast-bar>
+				</cell>
+				<cell recycle="false" @appear="freeAppear">
+					<home-free @returnMore="goFreePage" @returnGoodsCheck="goFreeGoodsDetail" :bg="free_group.bg" :group="free_group.group"></home-free>
+				</cell>
+				<!-- <cell recycle="false">
+					<home-public-zone :group_f="title1_group"></home-public-zone>
+				</cell> -->
+				<cell recycle="false">
+					<home-new-fish-zone :group_f="new_group"></home-new-fish-zone>
+				</cell>
+				<cell recycle="false" @appear="seckillAppear">
+					<home-seckill-zone ref="seckill" :group_f="seckill_group" :time_f="countdown" :size_f="'s'" @returnGames="getCurrentGames"></home-seckill-zone>
+				</cell>
+				<cell recycle="false" v-if="sections_loading_status.seckill">
+					<custom-elements-loading></custom-elements-loading>
+				</cell>
+				<cell>
+					<home-horizontal-scroller @returnSelectGoods="goSeckillGoodsDetail" @returnMore="moreSeckillGoods" :group="kill_goods[seckill_games]"></home-horizontal-scroller>
+				</cell>
+				<!-- <cell v-for="(item,index) in kill_goods[seckill_games]" :key="item.id">
+					<home-single-column-goods :group_f="[item]"></home-single-column-goods>
+				</cell> -->
+				<cell recycle="false">
+					<home-public-zone :group_f="title2_group"></home-public-zone>
+				</cell>
+				<cell recycle="false">
+					<home-events-plaza :group_f="plaza_group"></home-events-plaza>
+				</cell>
+				<cell recycle="false" @appear="goodsStuffAppear">
+					<home-public-zone  :group_f="title3_group"></home-public-zone>
+				</cell>
+				<cell recycle="false" v-if="sections_loading_status.nice_stuff">
+					<custom-elements-loading></custom-elements-loading>
+				</cell>
+				<cell v-for="(item,index) in nice_goods" :key="item.id">
+					<home-single-column-goods :group_f="[item]"></home-single-column-goods>
+				</cell>
+				<cell recycle="false">
+					<view class="empty"></view>
+				</cell>
+				<cell recycle="false" @appear="userRedAppear">
+					<home-public-zone  :group_f="title4_group"></home-public-zone>
+				</cell>
+				<cell recycle="false" v-if="sections_loading_status.user_red">
+					<custom-elements-loading></custom-elements-loading>
+				</cell>
+				<cell v-for="(item,index) in db_group" :key="'ss'+index">
+					<home-double-column-goods :group_f="item"></home-double-column-goods>
+				</cell>
+			</home-main-container>
+			<home-menu-box v-if="menu_toggle" :menu_group="menu_group" @returnMenuItem="categoryWather"></home-menu-box>
+		</custom-container-for-tabbar>
+		<custom-skeleton v-if="showSkeleton"></custom-skeleton>
+		<custom-page-loading :show_f="cover"></custom-page-loading>
+	</view>
+</template>
+
+<script>
+	import {home} from '@/static/mixins/home/home/home.js'
+	import {home_data} from '@/static/mixins/home/home/home_data.js'
+	import {home_interaction} from '@/static/mixins/home/home/home_interaction.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default {
+		mixins:[home,home_data,home_interaction,tabbar]
+	}
+</script>
+
+<style>
+	.home{
+		background-image: linear-gradient(to top,#f3f3f3,#fff);
+	}
+</style>

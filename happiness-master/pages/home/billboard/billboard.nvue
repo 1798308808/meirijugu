@@ -1,0 +1,33 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'排行榜'"></custom-navbar>
+		<custom-swiper-page :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :indicator_fixed="true">
+			<custom-simple-swiper ref="_list" @returnLoadmore="loadmore" :disabled="item.disabled" @returnTappedItem="getTappedItem" :id="index" :slot="item.name" :group="item.category" for_swiper need_padding v-for="(item,index) in page_group" :key="item.id">
+				<custom-refresher indi_color="#333333" center="true" :refreshing.sync="item.refresh" @userRefreshing="refreshing" :id="'+'+index"></custom-refresher>
+				<cell>
+					<view class="cts-empty-column"></view>
+				</cell>
+				<cell v-for="(item1,index1) in goods[index]">
+					<home-double-column-goods :group_f="item1"></home-double-column-goods>
+				</cell>
+				<cell>
+					<custom-loadmore :show_f="item.loadmore" :nomore_f="item.nomore"></custom-loadmore>
+				</cell>
+			</custom-simple-swiper>
+		</custom-swiper-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {bill} from '@/static/mixins/home/billboard/billboard.js'
+	import {bill_data} from '@/static/mixins/home/billboard/billboard_data.js'
+	import {bill_interaction} from '@/static/mixins/home/billboard/billboard_interaction.js'
+	export default {
+		mixins:[bill,bill_data,bill_interaction]
+	}
+</script>
+
+<style>
+
+</style>

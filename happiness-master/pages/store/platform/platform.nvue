@@ -1,0 +1,54 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page :fullscreen="true" :performance="true" ref="pl_list" :needLoadMore="loadmore_monitor"
+		 :loadMoreFlag="loadmore" :nomoreFlag="nomore">
+			<cell>
+				<platform-header :info="platform_info">
+					<platform-banner :group_f="banner_group"></platform-banner>
+					<view class="cts-empty-column"></view>
+					<custom-scroller-with-bar :count_f="category_count" v-if="menu_group.length>0" :color="platformColor(platform_info.type)">
+						<platform-menu :group="menu_group" @returnCategoryTapped="getCategoryTapped"></platform-menu>
+					</custom-scroller-with-bar>
+					<sindex-banner :group="banner"></sindex-banner>
+				</platform-header>
+				<custom-navbar :navbarType="2" :mainTitle="' '" :leftIcon="'/static/back_w.png'" :statusBarColor="'transparent'"
+				 :navbarColor="'transparent'"></custom-navbar>
+			</cell>
+			<cell v-for="(item,index) in double_group">
+				<sindex-double-column @returnTitleTapped="ADSTapped" :group="item"></sindex-double-column>
+			</cell>
+			<cell recycle="false" @appear="fetchPlatformGoods">
+				<home-public-zone :group_f="title_group"></home-public-zone>
+			</cell>
+			<cell v-if="re_loading">
+				<custom-elements-loading></custom-elements-loading>
+			</cell>
+			<cell v-for="(item,index) in goods">
+				<sindex-goods :group_f="item"></sindex-goods>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {
+		platform
+	} from '@/static/mixins/store/platform/platform.js'
+	import {
+		platform_data
+	} from '@/static/mixins/store/platform/platform_data.js'
+	import {
+		platform_interaction
+	} from '@/static/mixins/store/platform/platform_interaction.js'
+	import {
+		platform_extra
+	} from '@/static/mixins/store/platform/platform_extra.js'
+	export default {
+		mixins: [platform, platform_data, platform_interaction, platform_extra]
+	}
+</script>
+
+<style>
+
+</style>

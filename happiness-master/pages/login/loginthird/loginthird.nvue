@@ -1,0 +1,39 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" mainTitle="绑定第三方账号"></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<p-bp-bind :platform="platform_icon"></p-bp-bind>
+			<register-input v-for="(item,index) in group" :key="item.id"
+			 :id="item.id"
+			 :title="item.title" 
+			 :type="item.type"
+			 :placeholder="item.placeholder"
+			 :input_type="item.input_type"
+			 :max="item.max"
+			 :readonly="item.readonly"
+			 :captcha="item.captcha"
+			 @returnInput="getInput"
+			 @returnSend="getSendCAPTCHA"
+			 ></register-input>
+			 <view @tap="bindOrRegister">
+			 	<custom-button type='2' text="绑定" width="670" shadow></custom-button>
+			 </view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {lt} from '@/static/mixins/login/loginthird/lt.js'
+	import {lt_interaction} from '@/static/mixins/login/loginthird/lt_interaction.js'
+	import {lt_data} from '@/static/mixins/login/loginthird/lt_data.js'
+	export default {
+		mixins:[lt,lt_interaction,lt_data]
+	}
+</script>
+
+<style lang="scss">
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

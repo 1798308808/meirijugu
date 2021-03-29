@@ -1,0 +1,30 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="name" ></custom-navbar>
+		<custom-web-page :src="src"></custom-web-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				src:'',
+				name:''
+			}
+		},
+		methods: {
+			
+		},
+		onLoad() {
+			this.src = getCurrentPages()[getCurrentPages().length-1].$routeParams.link
+			this.name = getCurrentPages()[getCurrentPages().length-1].$routeParams.name
+		}
+	}
+</script>
+<style lang="scss" scoped>
+	.shit{
+		width: $cts-screen-full;
+		height: 400rpx;
+	}
+</style>

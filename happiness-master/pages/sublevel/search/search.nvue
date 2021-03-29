@@ -1,0 +1,31 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="7" :inputVal.sync="val" :statusBarColor="'#fff'"></custom-navbar>
+		<custom-container-in-navbar-page class="bg">
+			<search-box v-for="(item,index) in group" :key="item.title"
+			:title="item.title"
+			:hot="item.hot"
+			:bin="item.bin"
+			:options="item.options"
+			@returnKeyword="getKeywords"
+			@returnClearHistory="clearHistory"
+			></search-box>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {search} from '@/static/mixins/sublevel/search/search.js'
+	import {search_data} from '@/static/mixins/sublevel/search/search_data.js'
+	import {search_interaction} from '@/static/mixins/sublevel/search/search_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[search,search_interaction,search_data]
+	}
+</script>
+
+<style lang="scss" scoped>
+	.bg{
+		background-color: $cts-all-white;
+	}
+</style>

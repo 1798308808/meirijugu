@@ -1,0 +1,27 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="11"  :navbarImg="'/static/seckill_bg.png'"></custom-navbar>
+		<custom-container-in-navbar-page :performance="true">
+			<cell recycle="false">
+				<seckill-header></seckill-header>
+			</cell>
+			<cell recycle="false">
+				<seckill-timer></seckill-timer>
+			</cell>
+			<cell v-for="(item,index) in group" :key="item.id">
+				<home-single-column-goods :group_f="[item]" :nosub="true"></home-single-column-goods>
+			</cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import{seckill} from '@/static/mixins/home/seckill/seckill.js'
+	export default {
+		mixins:[seckill]
+	}
+</script>
+
+<style>
+
+</style>

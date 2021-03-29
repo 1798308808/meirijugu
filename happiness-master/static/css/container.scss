@@ -1,0 +1,32 @@
+.cts-flex{
+	&-ac{
+		align-items: center;
+	}
+	&-afs{
+		align-items: flex-start;
+	}
+	&-afe{
+		align-items: flex-end;
+	}
+	&-jc{
+		justify-content: center;
+	}
+	&-jfs{
+		justify-content: flex-start;
+	}
+	&-jfe{
+		justify-content: flex-end;
+	}
+	&-jsa{
+		justify-content: space-around;
+	}
+	&-jsb{
+		justify-content:space-between;
+	}
+	&-dir{
+		flex-direction: row;
+	}
+	&-wrap{
+		flex-wrap: wrap;
+	}
+}

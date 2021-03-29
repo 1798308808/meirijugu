@@ -1,0 +1,41 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="' '"></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<register-input v-for="(item,index) in group" :key="item.id" v-if="index<display_row"
+			 :id="item.id"
+			 :title="item.title" 
+			 :type="item.type"
+			 :placeholder="item.placeholder"
+			 :input_type="item.input_type"
+			 :max="item.max"
+			 :readonly="item.readonly"
+			 :captcha="item.captcha"
+			 @returnInput="getInput"
+			 @returnSend="getSendCAPTCHA"
+			 ></register-input>
+			 <view v-for="(item,index) in button_group" :key="item.text" @tap="reset_action">
+				 <custom-button :type='item.type' :text="item.text" :width="670" :shadow="item.shadow"></custom-button>
+			 </view>
+		</custom-container-in-navbar-page>
+		<login-bottom :reg="true"></login-bottom>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {reset} from '@/static/mixins/login/reset/reset.js'
+	import {reset_interaction} from '@/static/mixins/login/reset/reset_interaction.js'
+	import {reset_data} from '@/static/mixins/login/reset/reset_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[reset,reset_interaction,reset_data,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

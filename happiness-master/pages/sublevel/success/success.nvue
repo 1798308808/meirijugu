@@ -1,0 +1,20 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="1" :mainTitle="'支付结果'" ></custom-navbar>
+		<custom-container-in-navbar-page >
+			<success-board :icon="icon" :main="main" :sub="sub"></success-board>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {success} from '@/static/mixins/sublevel/success/success.js'
+	export default {
+		mixins:[success]
+		
+	}
+</script>
+
+<style>
+
+</style>

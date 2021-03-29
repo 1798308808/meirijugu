@@ -1,0 +1,10 @@
+{
+	"pages": [],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"navigationStyle": "custom",
+		"backgroundColor": "#FFFFFF"
+	},
+	"easycom": {}
+}

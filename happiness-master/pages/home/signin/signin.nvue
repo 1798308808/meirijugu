@@ -1,0 +1,59 @@
+<template>
+	<view>
+		<custom-container-for-tabbar :scroll="true" :needMonitor="scroll_monitor" :needLoadmore="loadmoreHandle" ref="center">
+			<custom-refresher indi_color="#222222" center="true" :refreshing.sync="refresh" @userRefreshing="refreshing" ></custom-refresher>
+			<cell>
+				<signin-board :name="user.name" :avatar="user.avatar" :greetings="user.greetings">
+					<signin-bean></signin-bean>
+					<!-- <signin-show-board :group="day">
+						<view @tap="signin">
+							<custom-button :type="signin_status?3:2" :text="'签到领奖励'" :colorType="1" :width="420"></custom-button>
+						</view>
+					</signin-show-board> -->
+				</signin-board>
+			</cell>
+			<cell>
+				<signin-extra-section>
+					<home-public-zone slot="head" :group_f="[title[0]]"></home-public-zone>
+					<vip-center-rows-item slot="body" v-for="(item,index) in group2" :key="index+'mission'" :id="item.id" :mute="item.mute" :src="item.src" :title="item.title" :num="item.num" :btn="item.btn" @returnRowItemTapped="startTask"></vip-center-rows-item>
+				</signin-extra-section>
+			</cell>
+			<cell>
+				<signin-extra-section color="transparent">
+					<home-public-zone slot="head" :group_f="[title[1]]"></home-public-zone>
+					<signin-card v-for="(item,index) in cards" :img="item.img" :url="item.url" slot="body" @returnTapped="cardTapped"></signin-card>
+				</signin-extra-section>
+			</cell>
+			<cell @appear="goodsShow">
+				<signin-extra-section color="transparent">
+					<home-public-zone slot="head" :group_f="[title[2]]"></home-public-zone>
+					<custom-elements-loading slot="body" v-if="goods_loading"></custom-elements-loading>
+				</signin-extra-section>
+			</cell>
+			<cell v-for="(item,index) in goods">
+				<home-double-column-goods :group_f="item"></home-double-column-goods>
+			</cell>
+			<cell>
+				<custom-loadmore :show_f="loadmore" :nomore_f="nomore"></custom-loadmore>
+			</cell>
+		</custom-container-for-tabbar>
+		<custom-navbar :navbarType="4" :mainTitle="' '" :statusBarColor="s_color" :navbarColor="n_color" :leftIcon="' '" :fontColor="'rgba(255,255,255,1)'" :rightText="'记录'" :mainTitleColor="'rgba(255,255,255,1)'"></custom-navbar>
+		<signin-pop v-if="signin_ani" :show.sync="signin_ani" :main="signin_text" :sub="signin_extra"></signin-pop>
+		<custom-page-loading :show_f="cover"></custom-page-loading>
+		<custom-loading-cover transparent="true" nothing="true" v-if="cover" tabbar="true"></custom-loading-cover>
+	</view>
+</template>
+
+<script>
+	import {signin} from '@/static/mixins/home/signin/signin.js'
+	import {signin_data} from '@/static/mixins/home/signin/signin_data.js'
+	import {signin_interaction} from '@/static/mixins/home/signin/signin_interaction.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default {
+		mixins:[signin,signin_data,signin_interaction,tabbar]
+	}
+</script>
+
+<style>
+
+</style>

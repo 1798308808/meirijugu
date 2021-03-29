@@ -1,0 +1,31 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'消息'" :rightText="'全部已读'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<view v-for="(item,index) in group" :key="item.title" @tap="checkMessage(index,item.type)">
+				<message-cell 
+				:title="item.title",
+				:desc="item.desc",
+				:count="item.count",
+				:time="item.time",
+				:src="item.src"
+				></message-cell>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {msg} from '@/static/mixins/home/message/message.js'
+	import {msg_data} from '@/static/mixins/home/message/message_data.js'
+	import {msg_interaction} from '@/static/mixins/home/message/message_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[msg,msg_data,msg_interaction,unload]
+	}
+</script>
+
+<style>
+
+</style>

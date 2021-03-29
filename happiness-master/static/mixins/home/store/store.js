@@ -1,0 +1,152 @@
+export const store ={
+	data() {
+		return {
+			options_group:[
+				{
+					active:true,
+					text:'餐饮餐具'
+				},
+				{
+					active:false,
+					text:'珠宝首饰'
+				},
+				{
+					active:false,
+					text:'箱包皮具'
+				},
+				{
+					active:false,
+					text:'鞋包首饰'
+				},
+				{
+					active:false,
+					text:'美妆美发'
+				},
+				{
+					active:false,
+					text:'电器电器'
+				},
+			],
+			h:'',
+			goods:[
+				[
+					{
+						id:'s1',
+						thumb:'/static/goods2.webp',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后享会员身份',
+						red:false,
+						sales:80,
+						price:4886.21
+					},
+					{
+						id:'s2',
+						thumb:'/static/goods2.webp',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后返50积分',
+						red:true,
+						sales:1826,
+						price:25.00
+					}
+				],
+				[
+					{
+						id:'s3',
+						thumb:'/static/bear.png',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后享会员身份',
+						red:false,
+						sales:80,
+						price:4886.21
+					},
+					{
+						id:'s4',
+						thumb:'/static/bear.png',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后返50积分',
+						red:true,
+						sales:1826,
+						price:25.00
+					}
+				],
+				[
+					{
+						id:'s5',
+						thumb:'/static/bear.png',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后享会员身份',
+						red:false,
+						sales:80,
+						price:4886.21
+					},
+					{
+						id:'s6',
+						thumb:'/static/bear.png',
+						title:'日单 软萌治愈系小馋猫偷吃餐盘 可爱毛抓手猫爪肉超级肉店',
+						desc:'购买后返50积分',
+						red:true,
+						sales:1826,
+						price:25.00
+					}
+				]
+			],
+			banner:[
+				{
+					src:'/static/b1.png'
+				},
+				{
+					src:'/static/b2.png'
+				},
+				{
+					src:'/static/b3.png'
+				},
+				{
+					src:'/static/b4.png'
+				}
+			],
+			group:[
+				{
+					name:'厨房厨具',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'婴幼儿用品',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'茶具',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'菜加点',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'厨房用具',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'茶具悲剧',
+					thumb:'/static/bear.png'
+				},
+				{
+					name:'筷',
+					thumb:'/static/bear.png'
+				}
+			]
+		}
+	},
+	onLoad(){
+		let [s,n,st,tb,p,pl,w] =
+		[
+			this.$store.state.common.safeAreaHeight,
+			this.$store.state.common.navbarHeight,
+			this.$store.state.common.statusBarHeight,
+		]
+		this.h = s - n - st - uni.upx2px(400)
+	},
+	methods: {
+		
+	}
+	
+}

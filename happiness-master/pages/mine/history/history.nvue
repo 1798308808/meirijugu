@@ -1,0 +1,33 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'我的足迹'" :fontColor="'#DA9976'" :rightText="'清除全部'"></custom-navbar>
+		<custom-simple-swiper :group="options_group" :custom="true">
+			<history-container>
+				<cell v-for="(item,index) in group1" @longpress="press">
+					<history-goods
+					:id="item.id"
+					:title="item.title"
+					:thumb="item.thumb"
+					:price="item.price"
+					:d_price="item.d_price"
+					:discount="item.discount"
+					:platform="item.platform"
+					:rewards="item.rewards"
+					:sales="item.sales"
+					></history-goods>
+				</cell>
+			</history-container>
+		</custom-simple-swiper>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {history} from '@/static/mixins/mine/history/history.js'
+	export default {
+		mixins:[history]
+	}
+</script>
+
+<style>
+
+</style>

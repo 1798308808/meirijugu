@@ -1,0 +1,51 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page  :fullscreen="true" :performance="true" :needMonitor="true">
+			<cell recycle="false">
+				<detail-banner :group="banner"></detail-banner>
+				<custom-navbar  :navbarType="2" :mainTitle="' '" :leftIcon="'/static/back_w.png'" :statusBarColor="'rgba(0,0,0,0)'" :navbarColor="'rgba(255,255,255,0)'"></custom-navbar>
+			</cell>
+			<cell recycle="false">
+				<particular-detail
+				:title="detail.title"
+				:price="detail.price"
+				:earn="detail.earn"
+				:deduct="detail.deduct"
+				:expire="detail.expire"
+				:vip="detail.vip"
+				:count="detail.count"
+				></particular-detail>
+			</cell>
+			<cell recycle="false" v-if="detail.has">
+				<particular-specifications @returnSelect="getSelect"></particular-specifications>
+			</cell>
+			<cell recycle="false">
+				<detail-goods-detail :nodes="nodes"></detail-goods-detail>
+			</cell>
+			<cell recycle="false">
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" :mainTitle="'商品详情'" :navbarOpacity="show_navbar"></custom-navbar>
+		<particular-footer></particular-footer>
+		<uni-popup ref="popup" type="bottom">
+			<particular-options :price="detail.price" :desc="detail.desc" :options="options"></particular-options>
+		</uni-popup>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {part} from '@/static/mixins/sublevel/particular/particular.js'
+	export default {
+		mixins:[part]
+	}
+</script>
+
+<style lang="scss" scoped>
+	
+</style>

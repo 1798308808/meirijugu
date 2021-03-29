@@ -1,0 +1,100 @@
+<template>
+	<div>
+		<!-- <view class="shit"></view>
+		<scroller scroll-direction="vertical" :style="{height:'1250rpx'}">
+			<button type="primary" @tap="shit('/pages/login/loginthird/loginthird')">第三方登录绑定页</button>
+			<button type="primary" @tap="shit('/pages/classification/rightsList/rightsList')">权益搜索页</button>
+			<button type="primary" @tap="shit('/pages/store/searchResult/searchResult')">搜索结果页</button>
+			<button type="primary" @tap="shit('/pages/sublevel/changePhoneNum/changePhoneNum')">修改手机</button>
+		
+			<button type="primary" @tap="shit('/pages/store/list/list')">商城平台商品列表</button>
+			<button type="primary" @tap="shit('/pages/login/loginsu/loginsu')">登录成功</button>
+			
+			<button type="primary" @tap="shit('/pages/store/ninenine/ninenine')">9.9元秒杀</button>
+			<button type="primary" @tap="shit('/pages/store/celebrity/celebrity')">大牌</button>
+			<button type="primary" @tap="shit('/pages/store/platform/platform')">平台页</button>
+			
+			<button type="primary" @tap="shit('/pages/popout/empty/empty')">弹窗空页面</button>
+			<button type="primary" @tap="shit('/pages/login/login/login')">登录</button>
+			<button type="primary" @tap="shit('/pages/login/register/register')">注册</button>
+			<button type="primary" @tap="shit('/pages/login/account/account')">账号登录</button>
+			
+			<button type="primary" @tap="shit('/pages/sublevel/free/free')">0元购</button>
+			<button type="primary" @tap="shit('/pages/sublevel/sord/sord')">商城订单</button>
+			<button type="primary" @tap="shit('/pages/sublevel/info/info')">订单详情</button>
+			<button type="primary" @tap="shit('/pages/sublevel/confirm/confirm')">确认订单</button>
+			<button type="primary" @tap="shit('/pages/sublevel/seller/seller')">商家</button>
+			<button type="primary" @tap="shit('/pages/sublevel/adsmanager/adsmanager')">我的收货地址</button>
+			<button type="primary" @tap="shit('/pages/sublevel/personal/personal')">修改资料</button>
+			<button type="primary" @tap="shit('/pages/sublevel/address/address')">新增收货地址</button>
+			<button type="primary" @tap="shit('/pages/sublevel/withdraw/withdraw')">提现</button>
+			<button type="primary" @tap="shit('/pages/sublevel/bind/bind')">绑定支付宝</button>
+			<button type="primary" @tap="shit('/pages/sublevel/fill/fill')">填写单号</button>
+			<button type="primary" @tap="shit('/pages/sublevel/settings/settings')">设置</button>
+			<button type="primary" @tap="shit('/pages/sublevel/success/success')">支付结果</button>
+			<button type="primary" @tap="shit('/pages/sublevel/search/search')">搜索</button>
+			<button type="primary" @tap="shit('/pages/sublevel/shopcart/shopcart')">购物车</button>
+			<button type="primary" @tap="shit('/pages/sublevel/particular/particular')">商品详情（自营）</button>
+			<button type="primary" @tap="shit('/pages/sublevel/record/record')">签到记录</button>
+			
+			<button type="primary" @tap="shit('/pages/home/message/message')">消息</button>
+			<button type="primary" @tap="shit('/pages/home/signin/signin')">签到</button>
+			<button type="primary" @tap="shit('/pages/home/detail/detail')">商品详情</button>
+			<button type="primary" @tap="shit('/pages/home/seckill/seckill')">秒杀</button>
+			<button type="primary" @tap="shit('/pages/home/rank/rank')">佣金排名</button>
+			<button type="primary" @tap="shit('/pages/home/nooice/nooice')">好物推荐</button>
+			<button type="primary" @tap="shit('/pages/home/recommand/recommand')">今日推荐</button>
+			<button type="primary" @tap="shit('/pages/home/billboard/billboard')">排行榜</button>
+			<button type="primary" @tap="shit('/pages/home/brand/brand')">优质品牌</button>
+			<button type="primary" @tap="shit('/pages/home/link/link')">外链专用</button>
+			<button type="primary" @tap="shit('/pages/home/store/store')">自营商城</button>
+			
+			<button type="primary" @tap="shit('/pages/classification/category/category')">分类商品页</button>
+			
+			<button type="primary" @tap="shit('/pages/mine/vip-center/vip-center')">会员中心</button>
+			<button type="primary" @tap="shit('/pages/mine/inviteFriends/inviteFriends')">邀请老友</button>
+			<button type="primary" @tap="shit('/pages/mine/officialNotice/officialNotice')">官方公告</button>
+			<button type="primary" @tap="shit('/pages/mine/article/article')">关于我们</button>
+			<button type="primary" @tap="shit('/pages/mine/order/order')">订单明细</button>
+			<button type="primary" @tap="shit('/pages/mine/collections/collections')">我的收藏</button>
+			<button type="primary" @tap="shit('/pages/mine/history/history')">我的足迹</button>
+			<button type="primary" @tap="shit('/pages/mine/service/service')">专属客服</button>
+			<button type="primary" @tap="shit('/pages/mine/question/question')">常见问题</button>
+			<button type="primary" @tap="shit('/pages/mine/report/report')">意见反馈</button>
+			<button type="primary" @tap="shit('/pages/mine/fans/fans')">我的粉丝</button>
+			<button type="primary" @tap="shit('/pages/mine/income/income')">我的收益</button>
+			<button type="primary" @tap="shit('/pages/404/404')">错误页</button>
+		</scroller> -->
+		<custom-navbar :navbarType="6"></custom-navbar>
+		<custom-tabbar :tabbarGroup_f="tabbarGroup" :tabbarPage_f="tabbarPage" :currentPage_f="current_page" :pop_button="!has_card" :pop_icon="'/static/t_main.png'" ref="tabbar">
+			<home :slot="'page0'" :id="'page0'"></home>
+			<store :slot="'page1'" :id="'page1'"></store>
+			<signin v-if="has_card" :slot="'page2'" :id="'page2'"></signin>
+			<card v-else :slot="'page2'" :id="'page2'"></card>
+			<classification :slot="'page3'" :id="'page3'"></classification>
+			<user :slot="'page4'" :id="'page4'"></user>
+		</custom-tabbar>
+	</div>
+</template>
+
+<script>
+	import {index} from '@/static/mixins/index.js'
+	import {index_interaction} from '@/static/mixins/index_interaction.js'
+	export default {
+		mixins:[index,index_interaction],
+		methods:{
+			shit(url){
+				uni.navigateTo({
+					url
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.shit{
+		width: 750rpx;
+		height: 100rpx;
+	}
+</style>

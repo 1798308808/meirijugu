@@ -1,0 +1,43 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page :performance="true" :fullscreen="true" class="red" :needMonitor="true" :needRefresh="true" refreshColor="#fff" refreshBg="#FFC694" :refreshing.sync="refreshing"
+		@userRefreshing="refreshPage">
+			<cell>
+				<free-board @returnRules="getRules"></free-board>
+			</cell>
+			<cell v-for="(item,index) in group" >
+				<free-item>
+					<home-single-column-goods :group_f="[item]"  :color="true"></home-single-column-goods>
+				</free-item>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-navbar
+			:navbarType="2" 
+			:mainTitle="'0元购'" 
+			:navbarColor="color" 
+			:leftIcon="icon" 
+			:statusBarColor="status_color" 
+			:mainTitleColor="font_color"
+		></custom-navbar>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+		<uni-popup ref="popup" type="bottom">
+			<free-rules  @returnClose="getClose"></free-rules>
+		</uni-popup>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {free} from '@/static/mixins/sublevel/free/free.js'
+	import {free_data} from '@/static/mixins/sublevel/free/free_data.js'
+	import {free_interaction} from '@/static/mixins/sublevel/free/free_interaction.js'
+	export default {
+		mixins:[free,free_data,free_interaction]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.red{
+		background-color: $cts-gradient-dark-red;
+	}
+</style>

@@ -1,0 +1,31 @@
+<template>
+	<p-brc-body>
+		<p-ua-box ref="box" id="update_application" :info="info" :version="current_version" :size="application_size_string" :newVersion="is_new_version" :loading="loading">
+			<view class="cts-empty-column"></view>
+			<p-ua-bar v-if="downloading" total="application_size" :current="current_size"></p-ua-bar>
+			<view class="cts-empty-column"></view>
+			<view class="cts-flex-jsb cts-flex-ac cts-flex-jc cts-flex-dir">
+				<view @tap="updateApplication">
+					<custom-button  :type="2" size="middle" text="立刻更新" shadow></custom-button>
+				</view>
+				<view class="cts-empty-row"></view>
+				<view @tap="ignoreCurrentVersion">
+					<custom-button  :type="1" size="middle" text="忽略此版本" ></custom-button>
+				</view>
+			</view>
+		</p-ua-box>
+	</p-brc-body>
+</template>
+
+<script>
+	import {ua} from '@/static/mixins/popout/ua/ua.js'
+	import {ua_data} from '@/static/mixins/popout/ua/ua_data.js'
+	import {ua_interaction} from '@/static/mixins/popout/ua/ua_interaction.js'
+	export default {
+		mixins:[ua,ua_data,ua_interaction]
+	}
+</script>
+
+<style>
+
+</style>

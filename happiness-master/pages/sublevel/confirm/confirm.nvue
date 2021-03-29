@@ -1,0 +1,77 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'确认订单'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<confirm-container>
+				<confirm-address></confirm-address>
+				<confirm-goods
+				:title="goods.title"
+				:count="goods.count"
+				:price="goods.price"
+				:options="goods.options"
+				:thumb="goods.thumb"
+				></confirm-goods>
+				<confirm-section>
+					<custom-cell v-for="(item,index) in group"
+					:key="item.title"
+					:title="item.title" 
+					:type="item.type" 
+					:mute="item.mute" 
+					:sub_title="item.sub" 
+					:high_light="item.light" 
+					:short="item.short"
+					:active_f.sync="item.active"
+					:pass_state_f="item.pass"
+					:id="item.id"
+					:val.sync="item.val"
+					:max="item.max"
+					:multiple="item.mul"
+					:options_f="item.options"
+					:input_type="item.input"
+					:info="item.info"
+					:alert="item.alert"
+					:no_border="item.border"
+					@returnInput="getInput"
+					@returnSelector="getSelector"
+					></custom-cell>
+				</confirm-section>
+				<confirm-section :title="'支付方式'">
+					<confirm-radio v-for="(item,index) in check" :key="item.id"
+					:title="item.title"
+					:sub="item.sub"
+					:active="item.active"
+					:id="item.id"
+					@returnCheck="getCheckVal"
+					></confirm-radio>
+				</confirm-section>
+				<confirm-section :title="'备注'">
+					<custom-cell
+					:title="ps.title" 
+					:type="ps.type" 
+					:sub_title="ps.sub" 
+					:short="ps.short"
+					:id="ps.id"
+					:val.sync="ps.val"
+					:max="ps.max"
+					:no_border="ps.border"
+					@returnInput="getInput"
+					@returnSelector="getSelector"
+					></custom-cell>
+				</confirm-section>
+			</confirm-container>
+		</custom-container-in-navbar-page>
+		<confirm-bottom></confirm-bottom>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {confirm} from '@/static/mixins/sublevel/confirm/confirm.js'
+	export default {
+		mixins:[confirm]
+		
+	}
+</script>
+
+<style>
+
+</style>

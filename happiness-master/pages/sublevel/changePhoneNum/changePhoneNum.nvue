@@ -1,0 +1,55 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" mainTitle="修改绑定手机" ></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<custom-cell v-for="(item,index) in group"
+			:ref="item.id"
+			:key="item.title"
+			:title="item.title" 
+			:type="item.type" 
+			:mute="item.mute" 
+			:sub_title="item.sub" 
+			:high_light="item.light" 
+			:short="item.short"
+			:active_f.sync="item.active"
+			:pass_state_f="item.pass"
+			:id="item.id"
+			:btn_text="item.btn_text"
+			:val.sync="item.val"
+			:max="item.max"
+			:countDownTime="item.countdown_time"
+			:multiple="item.mul"
+			:options_f="item.options"
+			:input_type="item.input"
+			:info="item.info"
+			:alert="item.alert"
+			:no_border="item.border"
+			@returnInput="getInput"
+			@returnCountDownStart="sendCode"
+			></custom-cell>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view @tap="changePhone">
+				<custom-button :type="2" text="修改" width="400"></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {cpn} from '@/static/mixins/sublevel/changePhoneNum/changePhoneNum.js'
+	import {cpn_interaction} from '@/static/mixins/sublevel/changePhoneNum/changePhoneNum_interaction.js'
+	import {cpn_data} from '@/static/mixins/sublevel/changePhoneNum/changePhoneNum_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[cpn,cpn_data,cpn_interaction,unload]
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

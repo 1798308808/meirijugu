@@ -1,0 +1,51 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="10" :mainTitle="options" :fontColor="'#DA9976'" :rightText="'找回订单'" :navbarDrop.sync="open"></custom-navbar>
+		<custom-swiper-page :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :indicator_fixed="true">
+			<order-container :slot="`page${index+1}`" :order_title="order_title" v-for="(item,index) in order[current_order]" :key="index+'_order'" @returnLoadmore="loadmoreData" :ref="`o_list_${index}`">
+				<order-header :val="page_group[index].keywords" :slot="'header'" :order_title="order_title[index]" @returnSearchResult="getSearchKeyWord"></order-header>
+				<custom-refresher :slot="'body'" :center="true" :indi_color="'#888'" :id="page_group[index].name" :refreshing.sync="page_group[index].refresh" @userRefreshing="refreshing"></custom-refresher>
+				<cell :slot="'body'">
+					<order-goods v-for="(item1,index1) in item" :key="item1.order_id"
+					v-if="itemFilter(index,item1.state)&&searchFilter(item1.order_number,page_group[index].keywords)"
+					:order_id="item1.order_id"
+					:store_name="item1.store_name"
+					:state="item1.state_info"
+					:goods_thumb="item1.goods_thumb"
+					:goods_name="item1.goods_name"
+					:order_number="item1.order_number"
+					:create_time="item1.create_time"
+					:income="item1.income"
+					:price="item1.price"
+					></order-goods>
+				</cell>
+				<cell :slot="'body'" recycle="false" v-if="item.length<1&&!cover&&!page_group[index].refresh">
+					<custom-empty :txt="'暂无订单数据'" :img="'/static/no_order.png'" :button="true" :button_text="'去逛逛'"></custom-empty>
+				</cell>
+				<cell recycle="false" :slot="'body'" v-if="!cover&&!page_group[index].refresh">
+					<custom-loadmore :show_f="loadmore_status[current_order][index].loadmore" :nomore_f="loadmore_status[current_order][index].nomore"></custom-loadmore>
+				</cell>
+			</order-container>
+		</custom-swiper-page>
+		<custom-dropdown :open.sync="open" :group.sync="group" @returnOptions="getOptions"></custom-dropdown>
+		<custom-loading-cover v-if="cover" :transparent="true"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {order} from '@/static/mixins/mine/order/order.js'
+	import {order_interaction} from '@/static/mixins/mine/order/order_interaction.js'
+	import {order_data} from '@/static/mixins/mine/order/order_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[order,order_interaction,order_data,unload]
+	}
+</script>
+
+<style>
+	.shit{
+		width: 750rpx;
+		height: 700rpx;
+		background-color: red;
+	}
+</style>

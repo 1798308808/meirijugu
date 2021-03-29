@@ -1,0 +1,31 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'商城订单'" ></custom-navbar>
+		<custom-swiper-page :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :indicator_fixed="true">
+			<sord-container :slot="'page1'">
+				<cell v-for="(item,index) in order">
+					<sord-item
+					:type="item.type"
+					:name="item.name"
+					:thumb="item.thumb"
+					:options="item.options"
+					:code="item.code"
+					:price="item.price"
+					:id="item.id"
+					></sord-item>
+				</cell>
+			</sord-container>
+		</custom-swiper-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {sord} from '@/static/mixins/sublevel/sord/sord.js'
+	export default {
+		mixins:[sord]
+	}
+</script>
+
+<style>
+
+</style>

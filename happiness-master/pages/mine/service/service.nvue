@@ -1,0 +1,29 @@
+<template>
+	<view>
+		<custom-navbar :navbarType="2" :mainTitle="'专属客服'" ></custom-navbar>
+		<custom-container-in-navbar-page class="cts-service">
+			<service-bubble :code="weixin_account"></service-bubble>
+			<view @tap="copyCode">
+				<custom-button :type="2" :text="'去微信加好友'" :shadow="true" :width="400"></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</view>
+</template>
+
+<script>
+	import {service} from '@/static/mixins/mine/service/service.js'
+	import {service_interaction} from '@/static/mixins/mine/service/service_interaction.js'
+	import {service_data} from '@/static/mixins/mine/service/service_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[service,service_interaction,service_data,unload]
+		
+	}
+</script>
+
+<style scoped>
+	.cts-service{
+		background-image: linear-gradient(to bottom,#fefaf9,#f4f4f4);
+	}
+</style>

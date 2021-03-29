@@ -1,0 +1,55 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'修改资料'" :navbarColor="'rgba(0,0,0,0)'" :statusBarColor="'#f4f4f4'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<personal-avatar @returnChoose="changeAvatar" :avatar="avatar"></personal-avatar>
+			<personal-container>
+				<custom-cell v-for="(item,index) in group"
+				:key="item.title"
+				:title="item.title" 
+				:type="item.type" 
+				:mute="item.mute" 
+				:sub_title="item.sub" 
+				:high_light="item.light" 
+				:short="item.short"
+				:active_f.sync="item.active"
+				:pass_state_f="item.pass"
+				:id="item.id"
+				:val.sync="item.val"
+				:max="item.max"
+				:multiple="item.mul"
+				:options_f="item.options"
+				:input_type="item.input"
+				:info="item.info"
+				:alert="item.alert"
+				:no_border="item.border"
+				@returnInput="getInput"
+				@returnSelector="getSelector"
+				></custom-cell>
+			</personal-container>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view @tap="saveChange">
+				<custom-button :type="2" :text="'保存修改'" :width="400"></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {personal} from '@/static/mixins/sublevel/personal/personal.js'
+	import {personal_data} from '@/static/mixins/sublevel/personal/personal_data.js'
+	import {personal_interaction} from '@/static/mixins/sublevel/personal/personal_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[personal,personal_data,personal_interaction,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

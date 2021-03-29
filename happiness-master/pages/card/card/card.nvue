@@ -1,0 +1,38 @@
+<template>
+	<view>
+		<custom-container-for-tabbar :scroll="true">
+			<cell v-for="(item,index) in group">
+				<custom-pic-loading class="card" lazy :img="item" :mode="'widthFix'"></custom-pic-loading>
+			</cell>
+		</custom-container-for-tabbar>
+		<image  @tap="createOrder" :style="{bottom:t +'px'}" class="fixed" src="http://www.jufu-unique.com/Public/static/img/jfk/fixed.png" mode="aspectFit"></image>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+		<uni-popup ref="popup" type="bottom">
+			<order-payment @returnPayment="getPayment" :cover="paying"></order-payment>
+		</uni-popup>
+	</view>
+</template>
+
+<script>
+	import {card} from '@/static/mixins/card/card/card.js'
+	import {card_interaction} from '@/static/mixins/card/card/card_interaction.js'
+	import {card_data} from '@/static/mixins/card/card/card_data.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default {
+		mixins:[card,card_interaction,card_data,tabbar]
+	}
+	
+</script>
+
+<style lang="scss" scoped>
+	.card{
+		width: $cts-screen-full;
+		min-height:300rpx;
+	}
+	.fixed{
+		width: $cts-screen-full;
+		height: 129rpx;
+		position: absolute;
+		left: 0;
+	}
+</style>

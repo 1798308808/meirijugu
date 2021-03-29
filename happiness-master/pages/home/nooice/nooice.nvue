@@ -1,0 +1,35 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="title" ></custom-navbar>
+		<custom-container-in-navbar-page performance :needLoadMore="loadmore_watcher" :loadMoreFlag="loadmore" :nomoreFlag="nomore" ref="ss">
+			<cell v-if="!cover&&group.length==0" recycle="false">
+				<custom-empty :txt="'暂时没有消息'" :img="'/static/no_message.png'" ></custom-empty>
+			</cell>
+			<template v-if="current_type==0">
+				<cell v-for="(item,index) in group" >
+					<officialNotice-text  :title="item.title" :desc="item.desc" :readed="item.readed" :time="item.time" :img="item.img"></officialNotice-text>
+				</cell>
+			</template>
+			<template v-else>
+				<cell v-for="(item,index) in group"  @tap="jump(index)">
+					<nooice-item :time="item.time" :thumb="item.thumb" :title="item.title" :desc="item.desc" :is_new="item.is_new" :noimg="item.noimg"></nooice-item>
+				</cell>
+			</template>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {nice} from '@/static/mixins/home/nooice/nooice.js' 
+	import {nice_data} from '@/static/mixins/home/nooice/nooice_data.js' 
+	import {nice_interaction} from '@/static/mixins/home/nooice/nooice_interaction.js' 
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[nice,nice_data,nice_interaction,unload]
+	}
+</script>
+
+<style>
+
+</style>

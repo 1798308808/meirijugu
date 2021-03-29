@@ -1,0 +1,27 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'自营商城'" :rightText="'订单'" :fontColor="'#DA9976'"></custom-navbar>
+		<store-container>
+			<store-banner :group="banner"></store-banner>
+			<custom-simple-swiper :group="options_group" :for_swiper="true" :normal="true" :custom_height="h">
+				<cell recycle="false">
+					<store-options :group="group"></store-options>
+				</cell>
+				<cell v-for="(item,index) in goods">
+					<store-double-item :group="item"></store-double-item>
+				</cell>
+			</custom-simple-swiper>
+		</store-container>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {store} from '@/static/mixins/home/store/store.js'
+	export default {
+		mixins:[store]
+	}
+</script>
+
+<style>
+
+</style>
