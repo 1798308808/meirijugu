@@ -1,0 +1,29 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'购物车'" ></custom-navbar>
+		<shopcart-container>
+			<cell v-for="(item,index) in group">
+				<shopcart-item
+				:title="item.title"
+				:count="item.count"
+				:price="item.price"
+				:options="item.options"
+				:thumb="item.thumb"
+				:active.sync="item.active"
+				></shopcart-item>
+			</cell>
+		</shopcart-container>
+		<shopcart-bottom></shopcart-bottom>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {shopcart} from '@/static/mixins/sublevel/shopcart/shopcart.js'
+	export default {
+		mixins:[shopcart]
+	}
+</script>
+
+<style>
+
+</style>

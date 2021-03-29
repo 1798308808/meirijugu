@@ -1,0 +1,28 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'优质品牌'" :statusBarColor="'#fff'"></custom-navbar>
+		<brand-container :page_id="pageId">
+			<custom-scroller-with-bar :count_f="count" slot="header">
+				<category-options :options="options"></category-options>
+			</custom-scroller-with-bar>
+			<custom-swiper-page slot="container" :menu_group="m_group" :list_outside="true" :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :indicator_fixed="true">
+				<brand-list v-for="(item,index) in page_group" :key="item.name" ref="page" :slot="item.name" :parent_id="pageId" :header_offset="offsetHeight">
+					<cell v-for="(item,index) in goods">
+						<brand-item :name="item.title" :thumb="item.avatar" :group="item.children"></brand-item>
+					</cell>
+				</brand-list>
+			</custom-swiper-page>
+		</brand-container>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {brand} from '@/static/mixins/home/brand/brand.js'
+	export default {
+		mixins:[brand]
+	}
+</script>
+
+<style lang="scss" scoped>
+	
+</style>

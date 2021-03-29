@@ -1,0 +1,19 @@
+<template>
+	<p-brc-body>
+		<view @tap="close">
+			<p-bp-img src="/static/cardo.png"></p-bp-img>
+			<p-bp-close></p-bp-close>
+		</view>
+	</p-brc-body>
+</template>
+
+<script>
+	import {bp_interaction} from '@/static/mixins/popout/bp/bp_interaction.js'
+	export default {
+		mixins:[bp_interaction]
+	}
+</script>
+
+<style>
+
+</style>

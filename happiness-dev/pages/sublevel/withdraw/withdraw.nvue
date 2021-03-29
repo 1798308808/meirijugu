@@ -1,0 +1,49 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'立即提现'" ></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<withdraw-board :icon="board.icon" :title="board.title"></withdraw-board>
+			<withdraw-container>
+				<custom-cell v-for="(item,index) in group"
+				:key="item.title"
+				:title="item.title" 
+				:type="item.type" 
+				:mute="item.mute" 
+				:sub_title="item.sub" 
+				:high_light="item.light" 
+				:short="item.short"
+				:active_f.sync="item.active"
+				:pass_state_f="item.pass"
+				:id="item.id"
+				:val.sync="item.val"
+				:max="item.max"
+				:multiple="item.mul"
+				:options_f="item.options"
+				:input_type="item.input"
+				:info="item.info"
+				:alert="item.alert"
+				@returnInput="getInput"
+				@returnSelector="getSelector"
+				></custom-cell>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<withdraw-attention :title="attention.title" :list="attention.list"></withdraw-attention>
+			</withdraw-container>
+			<withdraw-button :txt="btn" :type="type"></withdraw-button>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {withdraw} from '@/static/mixins/sublevel/withdraw/withdraw.js'
+	export default {
+		mixins:[withdraw]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

@@ -1,0 +1,53 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'我的粉丝'" ></custom-navbar>
+		<custom-container-in-navbar-page performance class="cts-basic-horizontal-padding" :needRefresh="true" :refreshColor="'#f0cb8d'" :refreshing.sync="refreshing"
+		@userRefreshing="refreshPage">
+			<cell recycle="false">
+				<fans-board
+				:total_fans="fans.total_fans"
+				:daily_increase="fans.daily_increase"
+				:newly_increase="fans.newly_increase"
+				:first_fans="fans.first_fans"
+				:secondary_fans="fans.secondary_fans"
+				></fans-board>
+				<fans-teacher
+				v-if="has_referrer"
+				:code="teacher.code"
+				:avatar="teacher.avatar"
+				:name="teacher.name"
+				></fans-teacher>
+				<fans-search v-if="users_group.length>0" @returnInput="getInput"></fans-search>
+			</cell>
+			<cell v-for="(item,index) in users_group" v-if="searchResult(item.name)">
+				<fans-user
+				:avatar="item.avatar"
+				:name="item.name"
+				:recommand="item.recommand"
+				:total_order="item.total_order"
+				:code="item.code"
+				:last_month="item.last_month"
+				:this_month="item.this_month"
+				:today_prediction="item.today_prediction"
+				></fans-user>
+			</cell>
+			<cell>
+				<view class="cts-empty-column"></view>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {fans} from '@/static/mixins/mine/fans/fans.js'
+	import {fans_interaction} from '@/static/mixins/mine/fans/fans_interaction.js'
+	import {fans_data} from '@/static/mixins/mine/fans/fans_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[fans,fans_data,fans_interaction,unload]
+	}
+</script>
+
+<style lang="scss" scoped>
+</style>

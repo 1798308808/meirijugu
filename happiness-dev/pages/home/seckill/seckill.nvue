@@ -1,0 +1,37 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="11"  :navbarImg="'/static/seckill_bg.png'"></custom-navbar>
+		<custom-container-in-navbar-page :performance="true"  :needMonitor="true" :needLoadMore="loadmore_monitor" :refreshColor="'#222'" :needRefresh="true" :refreshing.sync="refresh" @userRefreshing="refreshing"  
+		:loadMoreFlag="loadmore" :nomoreFlag="nomore">
+		<!-- 	<custom-refresher indi_color="#333333" center="true" :refreshing.sync="refresh" @userRefreshing="refreshing"></custom-refresher> -->
+			<cell recycle="false">
+				<seckill-header @retrunChange="getCurrentGames" :seckill_group="seckill_group"></seckill-header>
+			</cell>
+			<cell recycle="false" @appear="seckillAppear">
+				<seckill-timer ref="seckill" :group_f="seckill_group" :time_f="countdown" :size_f="'s'"></seckill-timer>
+			</cell>
+			<cell v-for="(item,index) in kill_goods[seckill_games]" :key="item.id">
+				<home-single-column-goods :group_f="[item]"></home-single-column-goods>
+			</cell>
+			
+			<cell>
+				<custom-loading-cover v-if="cover"></custom-loading-cover>
+			</cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import{seckill} from '@/static/mixins/home/seckill/seckill.js'	
+	import{seckill_data} from '@/static/mixins/home/seckill/seckill_data.js'
+	import{seckill_interaction} from '@/static/mixins/home/seckill/seckill_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[seckill,seckill_data,seckill_interaction,unload]
+		
+	}
+</script>
+
+<style>
+
+</style>

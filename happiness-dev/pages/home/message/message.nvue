@@ -1,0 +1,67 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'消息'" :rightText="'全部已读'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<message-cell v-for="(item,index) in group" :key="item.title"
+			:title="item.title",
+			:desc="item.desc",
+			:count="item.count",
+			:time="item.time",
+			:src="item.src"
+			></message-cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				group:[
+					{
+						title:'官方公告',
+						desc:'暂无消息',
+						count:0,
+						time:'23:20',
+						src:'/static/m1.png'
+					},
+					{
+						title:'系统公告',
+						desc:'暂无消息',
+						count:54,
+						time:'01:00',
+						src:'/static/m2.png'
+					},
+					{
+						title:'好物精选',
+						desc:'100片终极螺旋卫龙亲嘴烧（100g*3 34）',
+						count:2,
+						time:'08:00',
+						src:'/static/m3.png'
+					},
+					{
+						title:'出单提醒',
+						desc:'您的-富翁他第三季-已出单',
+						count:110,
+						time:'12:00',
+						src:'/static/m4.png'
+					},
+					{
+						title:'粉丝记录',
+						desc:'出入平安 请求加入好友群',
+						count:12,
+						time:'15:40',
+						src:'/static/m5.png'
+					}
+				]
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

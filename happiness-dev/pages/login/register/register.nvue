@@ -1,0 +1,41 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="' '"></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<register-input v-for="(item,index) in group" :key="item.id" v-if="index<display_rows"
+			 :id="item.id"
+			 :title="item.title" 
+			 :type="item.type"
+			 :placeholder="item.placeholder"
+			 :input_type="item.input_type"
+			 :max="item.max"
+			 :readonly="item.readonly"
+			 :captcha="item.captcha"
+			 @returnInput="getInput"
+			 @returnSend="getSendCAPTCHA"
+			 ></register-input>
+			 <view v-for="(item,index) in button_group" v-if="current_step==index" :key="item.text" @tap="regist_action(index)">
+				 <custom-button :type='item.type' :text="item.text" :width="670" :shadow="item.shadow"></custom-button>
+			 </view>
+		</custom-container-in-navbar-page>
+		<login-bottom :reg="true"></login-bottom>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {reg} from '@/static/mixins/login/register/register.js'
+	import {reg_data} from '@/static/mixins/login/register/register_data.js'
+	import {reg_interaction} from '@/static/mixins/login/register/register_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[reg,reg_data,reg_interaction,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

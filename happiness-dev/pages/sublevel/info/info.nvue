@@ -1,0 +1,58 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'订单详情'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<withdraw-board :icon="board.icon" :title="board.title" :sub="board.sub"></withdraw-board>
+			<confirm-container>
+				<confirm-section :title="'收货信息'">
+					<info-cell v-for="(item,index) in group1" :key="item.title"
+					:title="item.title"
+					:sub="item.sub"
+					:color="item.color"
+					:full="item.full"
+					:between="item.between"
+					></info-cell>
+				</confirm-section>
+				<confirm-goods
+				:title="goods.title"
+				:count="goods.count"
+				:price="goods.price"
+				:options="goods.options"
+				:thumb="goods.thumb"
+				></confirm-goods>
+				<confirm-section :title="'详情'">
+					<info-cell v-for="(item,index) in group2" :key="item.title"
+					:title="item.title"
+					:sub="item.sub"
+					:color="item.color"
+					:full="item.full"
+					:between="item.between"
+					></info-cell>
+					<info-total :title="'实付款'" :total="'￥59.25'"></info-total>
+				</confirm-section>
+				<confirm-section :title="'订单信息'">
+					<info-cell v-for="(item,index) in group3" :key="item.title"
+					:title="item.title"
+					:sub="item.sub"
+					:color="item.color"
+					:full="item.full"
+					:between="item.between"
+					></info-cell>
+				</confirm-section>
+			</confirm-container>
+		</custom-container-in-navbar-page>
+		<info-bottom :type="t"></info-bottom>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {info} from '@/static/mixins/sublevel/info/info.js'
+	export default {
+		mixins:[info]
+		
+	}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,32 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'签到记录'" ></custom-navbar>
+		<custom-container-in-navbar-page :needLoadMore="loadmore_watcher" :loadMoreFlag="loadmore" :nomoreFlag="nomore">
+			<record-box v-for="(item,index) in group" :key="item.month" :time="item.month">
+				<record-item v-for="(item1,index1) in item.children" :key="item1.time"
+				:icon="item1.icon"
+				:time="item1.time"
+				:title="item1.title"
+				:addition="item1.addition"
+				:current="item1.current"
+				></record-item>
+			</record-box>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {record} from '@/static/mixins/sublevel/record/record.js'
+	import {record_data} from '@/static/mixins/sublevel/record/record_data.js'
+	import {record_interaction} from '@/static/mixins/sublevel/record/record_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[record,record_data,record_interaction,unload]
+		
+	}
+</script>
+
+<style>
+
+</style>

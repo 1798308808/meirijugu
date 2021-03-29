@@ -1,0 +1,88 @@
+<template>
+	<custom-container-for-tabbar>
+		<view v-if="!showSkeleton">
+			<custom-container-for-tabbar :scroll="true" :page_id="page_id" ref="home" :needLoadmore="loadmoreHandle">
+				<custom-refresher color="#4a4542" indi_color="#4a4542" center :refreshing.sync="refresh" @userRefreshing="refreshing" ></custom-refresher>
+				<cell>
+					<sindex-header :top_banner="top_banner">
+						<sindex-menu v-for="(item,index) in menu_group" :key="item.id"
+						@returnMenu="getTappedMenu"
+						:id="item.id"
+						:title="item.title"
+						:desc="item.desc"
+						:thumb="item.thumb"
+						:spec="item.spec"
+						></sindex-menu>
+					</sindex-header>
+					<sindex-banner :group="banner"></sindex-banner>
+				</cell>
+				<cell v-for="(item,index) in double_group">
+					<sindex-double-column @returnTitleTapped="ADSTapped" :group="item"></sindex-double-column>
+				</cell>
+				<cell recycle="false" @appear="recommandProgramAppear">
+					<home-public-zone  :group_f="title_group"></home-public-zone>
+				</cell>
+				<cell recycle="false" v-if="re_loading">
+					<custom-elements-loading></custom-elements-loading>
+				</cell>
+				<cell v-for="(item,index) in goods">
+					<sindex-goods :group_f="item"></sindex-goods>
+				</cell>
+				<cell>
+					<custom-loadmore :show_f="loadmore" :nomore_f="nomore"></custom-loadmore>
+				</cell>
+				<!-- <cell>
+					<custom-swiper-page slot="container" :menu_group="m_group" swell="true" has_menu :list_outside="true" :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" :if_tabbar_page="true">
+						<sindex-list ref="page1" slot="page1" :parent_id="page_id" :header_offset="offsetHeight">
+							<cell>
+								<sindex-magazine :group="ad_group"></sindex-magazine>
+							</cell>
+							<cell v-for="(item,index) in double_group">
+								<sindex-double-column :group="item"></sindex-double-column>
+							</cell>
+							<cell recycle="false">
+								<home-public-zone  :group_f="title_group"></home-public-zone>
+							</cell>
+							<cell v-for="(item,index) in goods">
+								<sindex-goods :group_f="item"></sindex-goods>
+							</cell>
+							<cell>
+								<sindex-progress></sindex-progress>
+							</cell>
+							<cell>
+								<detail-shopping-instruction title="注意事项" :group="instructions"></detail-shopping-instruction>
+							</cell>
+						</sindex-list>
+						<sindex-list ref="page2" slot="page2" :parent_id="page_id" :header_offset="offsetHeight">
+							<cell recycle="false">
+								<custom-elements-loading></custom-elements-loading>
+							</cell>
+						</sindex-list>
+						<sindex-list ref="page3" slot="page3" :parent_id="page_id" :header_offset="offsetHeight">
+							<cell recycle="false">
+								<custom-elements-loading></custom-elements-loading>
+							</cell>
+						</sindex-list>
+					</custom-swiper-page>
+				</cell> -->
+			</custom-container-for-tabbar>
+		</view>
+		<custom-navbar :navbarType="13" navbarColor="#4a4542" statusBarColor="#4a4542" :mainTitle="navbar_placeholder" :rightText="navbar_btn_text" ></custom-navbar>
+		<custom-skeleton :type="2" v-if="showSkeleton"></custom-skeleton>
+		<custom-page-loading :show_f="cover"></custom-page-loading>
+	</custom-container-for-tabbar>
+</template>
+
+<script>
+	import {store} from '@/static/mixins/store/index/index.js'
+	import {store_data} from '@/static/mixins/store/index/index_data.js'
+	import {store_interaction} from '@/static/mixins/store/index/index_interaction.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default {
+		mixins:[store,store_data,store_interaction,tabbar]
+	}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,33 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-container-in-navbar-page performance :fullscreen="true" :needMonitor="true" :needRefresh="true" :refreshColor="'#222'" :refreshing.sync="refreshing" @userRefreshing="refreshPage">
+			<cell recycle="false">
+				<income-board
+				:total="income_detail.total"
+				:remain="income_detail.remain"
+				:last_month="income_detail.last_month"
+				:current_month="income_detail.current_month"
+				></income-board>
+				<income-chart :group_f="income_group" @returnCurrentColumn="getCurrentColumn">
+					<income-curve v-if="curve_show" :commission_data="current_display_data"></income-curve>
+				</income-chart>
+				<income-options :group="options_group" @returnOptions="getOptions"></income-options>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" :leftIcon="icon" :mainTitle="'我的收益'" :navbarColor="color" :mainTitleColor="font_color" :statusBarColor="status_color"></custom-navbar>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {income} from '@/static/mixins/mine/income/income.js'
+	import {income_interaction} from '@/static/mixins/mine/income/income_interaction.js'
+	import {income_data} from '@/static/mixins/mine/income/income_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[income,income_data,income_interaction,unload]
+	}
+</script>
+
+<style lang="scss">
+</style>

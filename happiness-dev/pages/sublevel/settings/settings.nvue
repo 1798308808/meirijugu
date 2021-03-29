@@ -1,0 +1,49 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'设置'" ></custom-navbar>
+		<custom-container-in-navbar-page >
+			<settings-group>
+				<custom-cell v-for="(item,index) in settings_group1" 
+				:key="item.title" 
+				:title="item.title" 
+				:id="item.id"
+				:type="item.type"
+				@returnTapping="getTapping"
+				></custom-cell>
+			</settings-group>
+			<settings-group :btn="has" @returnTapping="exit">
+				<custom-cell v-for="(item,index) in settings_group2" 
+				:key="item.title" 
+				:title="item.title"
+				:id="item.id"
+				:type="item.type"
+				:sub_title="item.sub"
+				:high_light="item.light"
+				@returnTapping="getTapping"
+				></custom-cell>
+			</settings-group>
+		<!-- 	<settings-group>
+				<custom-cell v-for="(item,index) in group" :key="item.title" :title="item.title" :type="item.type" :mute="item.mute"></custom-cell>
+			</settings-group>
+			<settings-group :btn="true">
+				<custom-cell v-for="(item,index) in group1" :key="item.title" :title="item.title" :type="item.type" :mute="item.mute" :sub_title="item.sub" :high_light="item.light"></custom-cell>
+			</settings-group> -->
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {settings} from '@/static/mixins/sublevel/settings/settings.js'
+	import {settings_interaction} from '@/static/mixins/sublevel/settings/settings_interaction.js'
+	import {settings_data} from '@/static/mixins/sublevel/settings/settings_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[settings,settings_interaction,settings_data,unload]
+		
+	}
+</script>
+
+<style>
+
+</style>

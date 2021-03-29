@@ -1,0 +1,25 @@
+<template>
+	<p-brc-body>
+		<p-brc-loading v-if="cover"></p-brc-loading>
+		<p-brc-box :id="id" ref="box">
+			<p-bp-bind :desc="desc" :title="title" :platform="platform">
+				<view @tap="startBind">
+					<custom-button type="2" text="立即绑定" shadow></custom-button>
+				</view>
+			</p-bp-bind>
+		</p-brc-box>
+	</p-brc-body>
+</template>
+
+<script>
+	import {bsa} from '@/static/mixins/popout/bsa/bsa.js'
+	import {bsa_data} from '@/static/mixins/popout/bsa/bsa_data.js'
+	import {bsa_interaction} from '@/static/mixins/popout/bsa/bsa_interaction.js'
+	export default {
+		mixins:[bsa,bsa_data,bsa_interaction]
+	}
+</script>
+
+<style>
+
+</style>

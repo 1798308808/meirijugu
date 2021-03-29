@@ -1,0 +1,24 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="title" :navbarColor="'rgba(0,0,0,0)'" :statusBarColor="'#f4f4f4'"></custom-navbar>
+		<custom-container-in-navbar-page :performance="true">
+			<custom-basic-article-header :time="time" :title="title" :avatar="avatar" :other="other" :name="author"></custom-basic-article-header>
+			<custom-basic-article :nodes="nodes"></custom-basic-article>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {article} from '@/static/mixins/mine/article/article.js'
+	import {article_data} from '@/static/mixins/mine/article/article_data.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[article,article_data,unload]
+		
+	}
+</script>
+
+<style>
+
+</style>

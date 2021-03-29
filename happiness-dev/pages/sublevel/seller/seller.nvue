@@ -1,0 +1,29 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'FROGPRINCE/青蛙王子'" ></custom-navbar>
+		<custom-container-in-navbar-page :performance="true">
+			<cell recycle="false">
+				<seller-board 
+				:thumb="seller.thumb"
+				:name="seller.name"
+				:desc="seller.desc"
+				></seller-board>
+			</cell>
+			<cell v-for="(item,index) in group">
+				<seller-item :group="item"></seller-item>
+			</cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {seller} from '@/static/mixins/sublevel/seller/seller.js'
+	export default {
+		mixins:[seller]
+		
+	}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,34 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="' '" :rightText="'注册'"></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<login-board @returnOneStep="one_step_pre_login" @returnAnotherLogin="another_login"></login-board>
+		</custom-container-in-navbar-page>
+		<login-bottom></login-bottom>
+		<uni-popup ref="popup" type="bottom">
+			<login-quick>
+				<login-top @returnCloseOneKeyLoginIn="closeOneKeyLoginIn"></login-top>
+				<custom-button :type="2" :width="400" :text="'登录'" :shadow="true"></custom-button>
+				<login-support></login-support>
+				<login-nothing></login-nothing>
+			</login-quick>
+		</uni-popup>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {login} from '@/static/mixins/login/login/login.js'
+	import {login_interaction} from '@/static/mixins/login/login/login_interaction.js'
+	import {login_data} from '@/static/mixins/login/login/login_data.js'
+	export default {
+		mixins:[login,login_interaction,login_data]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

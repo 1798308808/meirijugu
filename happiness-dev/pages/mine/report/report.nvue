@@ -1,0 +1,33 @@
+<template>
+	<custom-container-with-navbar class="white">
+		<custom-navbar :navbarType="2" :mainTitle="'意见反馈'" ></custom-navbar>
+		<custom-container-in-navbar-page >
+			<custom-textarea :val.sync="main_content" :pl="'请输入相关内容'"></custom-textarea>
+			<custom-input :pl="'手机号'" :val.sync="phone" :type="'number'"></custom-input>
+			<custom-input :pl="'您的称呼（选填）'" :val.sync="name" :type="'text'"></custom-input>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view @tap="submitReport">
+				<custom-button :type="2" :shadow="true" :width="600" :text="'提交反馈'"></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {report} from '@/static/mixins/mine/report/report.js'
+	import {report_data} from '@/static/mixins/mine/report/report_data.js'
+	import {report_interaction} from '@/static/mixins/mine/report/report_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[report,report_interaction,report_data,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

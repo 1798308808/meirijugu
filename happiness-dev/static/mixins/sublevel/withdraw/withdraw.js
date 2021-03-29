@@ -1,0 +1,47 @@
+export const withdraw = {
+	data(){
+		return {
+			board:{
+				title:'提现至支付宝',
+				icon:'/static/alipay.png'
+			},
+			group:[
+				{
+					id:'s1',
+					type:11,
+					title:"到账账号",
+					sub:'绑定支付宝',
+				},
+				{
+					id:'s2',
+					type:7,
+					title:"真实姓名",
+					sub:'请填写真实姓名',
+				},
+				{
+					input:'digit',
+					id:'s1',
+					type:7,
+					title:"提现金额",
+					sub:'请填写数字金额',
+					info:'可提现金额：￥2.68'
+				},
+			],
+			attention:{
+				title:'注意',
+				list:[
+					'最低提现额度为2元',
+					'每月22号可提现上个月确认收获的订单佣金',
+					'提现金额大于300元需要人工审核，会在下一个工作日内审核到账'
+				]
+			},
+			type:3,
+			btn:'需要绑定支付宝提现'
+		}
+	},
+	onReady(){
+		setTimeout(()=>{
+			this.type = 2;
+		},1000)
+	}
+}

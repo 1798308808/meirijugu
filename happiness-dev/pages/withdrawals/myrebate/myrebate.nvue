@@ -1,0 +1,28 @@
+<template>
+ 		<custom-container-with-navbar>
+ 			<custom-navbar :navbarType="4" :mainTitle="'我的返利'" :rightText="'提现明细'"></custom-navbar>
+ 			<custom-container-in-navbar-page>
+					<!-- 内容 -->
+				<myrebate-content v-for="item in list" :key="item" @returnBtn="btns" :iconType="item.iconType" :iconTitle="item.iconTitle" :price="item.price" :btnTitle="'立即提现'"></myrebate-content>
+ 			</custom-container-in-navbar-page>
+ 		</custom-container-with-navbar>
+ </template>
+ <script>
+	import {myrebate} from '@/static/mixins/withdrawals/myrebate/myrebate.js'
+	import {myrebate_data} from '@/static/mixins/withdrawals/myrebate/myrebate_data.js'
+ 	export default {
+		mixins:[myrebate,myrebate_data],
+ 		data() {
+ 			return {
+				
+ 			}
+ 		},
+ 		methods: {
+ 			btns(){
+				uni.showToast({
+					title:"123"
+				})
+			}
+ 		}
+ 	}
+ </script>

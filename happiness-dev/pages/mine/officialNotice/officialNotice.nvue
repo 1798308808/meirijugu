@@ -1,0 +1,22 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'官方公告'"></custom-navbar>
+		<custom-container-in-navbar-page :performance="true">
+			<cell v-for="(item,index) in group">
+				<officialNotice-text  :title="item.title" :desc="item.desc" :readed="item.readed" :time="item.time" :img="item.img"></officialNotice-text>
+			</cell>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {official} from '@/static/mixins/mine/officialNotice/officialNotice.js'
+	export default {
+		mixins:[official]
+		
+	}
+</script>
+
+<style>
+
+</style>

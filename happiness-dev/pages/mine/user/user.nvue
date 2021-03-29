@@ -1,0 +1,38 @@
+<template>
+	<view>
+		<custom-container-for-tabbar :scroll="true" :needMonitor="scroll_monitor">
+			<custom-refresher :color="color" :refreshing.sync="refresh" @userRefreshing="refreshing" @startRefresh="pulling"></custom-refresher>
+			<cell recycle="false">
+				<user-background></user-background>
+				<custom-navbar :navbarType="9" :statusBarColor="color" :navbarColor="color"></custom-navbar>
+				<user-basic-info :login_state="isLogin" :group_f="[userInfo]" @returnLoginState="getLoginState" @returnRemain="withdraw"></user-basic-info>
+				<user-basic-detail :p1="userInfo.today_income" :p2="userInfo.month_income" :p3="userInfo.last_month_income" :p4="userInfo.credit" @returnBoardTapped="boardTapped">
+					<user-menu-group :id="1" :group_f="for_menu_group1" ></user-menu-group>
+					<user-banner :group_f="for_menu_banner"></user-banner>
+					<!-- <user-menu-group :id="2" :group_f="for_menu_group2" :extra_f="for_menu_title1"></user-menu-group> -->
+					<user-menu-group :id="3" :group_f="for_menu_group3" :extra_f="for_menu_title2"></user-menu-group>
+					<user-mechandise @returnMore="goNinePage" @returnGoodsId="goNineDetail" :group="bottom_list"></user-mechandise>
+				</user-basic-detail>
+			</cell>
+		</custom-container-for-tabbar>
+		<custom-navbar :navbarType="9" :statusBarColor="color" :navbarColor="color" :navbarOpacity="opacity"></custom-navbar>
+		<user-avatar :extra_f="for_user_avatar"></user-avatar>
+		<user-name :extra_f="for_user_name"></user-name>
+		<custom-page-loading :show_f="page_refresh"></custom-page-loading>
+	</view>
+</template>
+
+<script>
+	import {user} from '@/static/mixins/mine/user/user.js'
+	import {user_interaction} from '@/static/mixins/mine/user/user_interaction.js'
+	import {user_data} from '@/static/mixins/mine/user/user_data.js'
+	import {tabbar} from '@/static/mixins/public/tabbar.js'
+	export default {
+		mixins:[user,user_interaction,user_data,tabbar]
+	}
+	
+</script>
+
+<style lang="scss" scoped>
+
+</style>

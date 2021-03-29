@@ -1,0 +1,35 @@
+<template>
+	<scroller>
+		<view class="empty"></view>
+		<button type="primary" @tap="pop('bind_recommand_code')">弹出绑定用户</button>
+		<button type="primary" @tap="pop('buy_card')">弹出开通聚福卡成功</button>
+		<button type="primary" @tap="pop('bind_store_account')">弹出绑定商城用户</button>
+		
+		<home-horizontal-scroller></home-horizontal-scroller>
+	</scroller>
+</template>
+
+<script>
+	import com from '@/static/js/common.js'
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			pop(url){
+				com.showGlobalPopUpWindows(url,'zoom-fade-out')
+			}
+		},
+		onReady() {
+
+		}
+	}
+</script>
+
+<style>
+	.empty{
+		height: 300rpx;
+	}
+</style>

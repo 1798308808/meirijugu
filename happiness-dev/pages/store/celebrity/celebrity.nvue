@@ -1,0 +1,26 @@
+<template>
+	<custom-container-with-navbar>
+		<celebrity-body></celebrity-body>
+		<custom-container-in-navbar-page performance>
+			<cell v-for="(item,index) in brands_group">
+				<celebrity-box
+				:brands="item.detail"
+				:title_group="item.title"
+				:goods_group="item.goods"
+				></celebrity-box>
+			</cell>
+		</custom-container-in-navbar-page>
+		<custom-navbar :navbarType="2" :mainTitle="'大牌推荐'" :leftIcon="'/static/back_w.png'" :mainTitleColor="'#fff'" :statusBarColor="'#FF6363'" :navbarColor="'#FF6363'"></custom-navbar>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {celebrity} from '@/static/mixins/store/celebrity/celebrity.js'
+	export default {
+		mixins:[celebrity]
+	}
+</script>
+
+<style>
+
+</style>

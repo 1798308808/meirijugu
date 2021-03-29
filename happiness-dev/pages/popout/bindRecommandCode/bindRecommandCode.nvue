@@ -1,0 +1,23 @@
+<template>
+	<p-brc-body>
+		<p-brc-loading v-if="cover"></p-brc-loading>
+		<p-brc-box :id="id" ref="box">
+			<p-brc-input @returnInput="getInput"></p-brc-input>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<p-brc-button @returnTapped="getButtonTapped"></p-brc-button>
+		</p-brc-box>
+	</p-brc-body>
+</template>
+
+<script>
+	import {brc} from '@/static/mixins/popout/brc/brc.js'
+	import {brc_data} from '@/static/mixins/popout/brc/brc_data.js'
+	import {brc_interaction} from '@/static/mixins/popout/brc/brc_interaction.js'
+	export default {
+		mixins:[brc,brc_data,brc_interaction]
+	}
+</script>
+
+<style>
+</style>

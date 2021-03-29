@@ -1,0 +1,38 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'邀请好友'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<view :style="{height:e+'px'}"></view>
+			<custom-card-banner :group_f="group" :width_f="520" :margin_f="60" :height_f="h" shadow @returnCurrent="getCurrent" motion></custom-card-banner>
+			<view class="cts-empty-column"></view>
+			<view class="cts-empty-column"></view>
+			<view class="cts-flex-jc cts-flex-ac cts-flex-dir">
+				<view @tap="copyShareLinks">
+					<custom-button :type="1" :text="'点击复制链接'"></custom-button>
+				</view>
+				<view class="cts-empty-row"></view>
+				<view @tap="openSharePanel">
+					<custom-button :type="2" :text="'分享邀请'"></custom-button>
+				</view>
+			</view>
+		</custom-container-in-navbar-page>
+		<uni-popup ref="popup" type="bottom">
+			<detail-share no @returnSelectedOptions="getShareOptions"></detail-share>
+		</uni-popup>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {invite} from '@/static/mixins/mine/inviteFriends/inviteFriends.js'
+	import {invite_data} from '@/static/mixins/mine/inviteFriends/inviteFriends_data.js'
+	import {invite_interaction} from '@/static/mixins/mine/inviteFriends/inviteFriends_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[invite,invite_data,invite_interaction,unload]
+	}
+</script>
+
+<style>
+
+</style>

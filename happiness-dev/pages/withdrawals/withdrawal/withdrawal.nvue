@@ -1,0 +1,50 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="'提现'" :rightText="'规则'"></custom-navbar>
+		<custom-container-in-navbar-page>
+		<view class="cts-basic-horizontal-padding cts-wd-big">
+				<!-- 上部 -->
+				<withdrawal-top :yue="yue" @retrunWithdrawal="btn" :daiPrice="daiPrice" :leiPrice="leiPrice" :leiRebate="leiRebate"></withdrawal-top>
+
+				<!-- 中部 -->
+				<withdrawal-center :rebateOrder="rebateOrder" :cash="cash"></withdrawal-center>
+
+				<!-- 下部 -->
+				<withdrawal-footer></withdrawal-footer>
+
+		</view>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				yue:'0.00',
+				daiPrice:'0.20',
+				leiPrice:'0.40',
+				leiRebate:'0.60',
+				
+				rebateOrder:'返利订单',
+				cash:'现金红包'
+
+			}
+		},
+		methods: {
+			btn(){
+				uni.showToast({
+					title:"2222"
+				})
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.cts-wd{
+		&-big{
+			width: 750rpx;
+		}	
+	}
+</style>

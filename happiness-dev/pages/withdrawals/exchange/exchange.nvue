@@ -1,0 +1,49 @@
+<template>
+		<view class="cts-basic-container" :style="{height:h+'px'}">
+		<custom-navbar :navbarType="4" :mainTitle="'锦鲤币兑换'" :rightText="'去提现'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<!-- 兑换详情 -->
+			<exchange-top :todayMoney="todayMoney" :totalMoney="totalMoney"></exchange-top>
+			<!-- 兑换记录	 -->
+			<exchange-footer>
+				<record-box v-for="(item,index) in group" :key="item.month" :time="item.month">
+					<record-item v-for="(item1,index1) in item.children" :key="item1.time"
+					:icon="item1.icon"
+					:time="item1.time"
+					:title="item1.title"
+					:addition="item1.addition"
+					:current="item1.current"
+					></record-item>
+				</record-box>
+			</exchange-footer>
+		</custom-container-in-navbar-page>
+		</view>
+</template>
+
+<script>
+	import {record} from '@/static/mixins/sublevel/record/record.js'
+	import {record_data} from '@/static/mixins/sublevel/record/record_data.js'
+	import {record_interaction} from '@/static/mixins/sublevel/record/record_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[record,record_data,record_interaction,unload],
+		data() {
+			return {
+				h:'',
+				totalMoney:1500,
+				todayMoney:500,
+			};
+		},
+		created() {
+			this.h = this.$store.state.common.safeAreaHeight;
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+.cts-basic-container{
+		width: $cts-screen-full;
+		position: relative;
+		background-color: $cts-all-white;
+	}
+</style>

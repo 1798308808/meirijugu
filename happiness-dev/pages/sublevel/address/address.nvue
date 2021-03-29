@@ -1,0 +1,63 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="title" ></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<withdraw-container>
+				<custom-cell v-for="(item,index) in group"
+				:key="item.title"
+				:title="item.title" 
+				:type="item.type" 
+				:mute="item.mute" 
+				:sub_title="item.sub" 
+				:high_light="item.light" 
+				:short="item.short"
+				:active_f.sync="item.active"
+				:pass_state_f="item.pass"
+				:id="item.id"
+				:val.sync="item.val"
+				:max="item.max"
+				:multiple="item.mul"
+				:options_f="item.options"
+				:input_type="item.input"
+				:info="item.info"
+				:alert="item.alert"
+				:no_border="item.border"
+				@returnInput="getInput"
+				@returnSelector="getSelector"
+				></custom-cell>
+				<view class="cts-empty-column"></view>
+				<view class="cts-empty-column"></view>
+				<view class="cts-flex-dir cts-flex-ac cts-flex-jc" v-if="edit">
+					<view @tap="addAddress">
+						<custom-button :type="2" text="保存" ></custom-button>
+					</view>
+					<view class="cts-empty-row"></view>
+					<view @tap="deleteAddress">
+						<custom-button :type="2" text="删除" colorType="1" ></custom-button>
+					</view>
+				</view>
+				<view v-else @tap="addAddress">
+					<custom-button :type="2" text="保存" width="400"></custom-button>
+				</view>
+			</withdraw-container>
+		</custom-container-in-navbar-page>
+		<custom-loading-cover transparent v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {address} from '@/static/mixins/sublevel/address/address.js'
+	import {address_data} from '@/static/mixins/sublevel/address/address_data.js'
+	import {address_interaction} from '@/static/mixins/sublevel/address/address_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[address_data,address_interaction,address,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

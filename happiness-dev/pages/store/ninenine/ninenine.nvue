@@ -1,0 +1,41 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'9.9元包邮专区'" :statusBarColor="'#fff'"></custom-navbar>
+		<brand-container :page_id="pageId">
+			<template slot="refresh">
+				<custom-refresher color="#fff" indi_color="#333" center :refreshing.sync="refreshing" @userRefreshing="goodsRefresh" ></custom-refresher>
+			</template>
+			<nine-banner slot="header" :group="banner"></nine-banner>
+			<custom-swiper-page v-if="options_group.length!=0" indi_color="#fff" item_active_bg="#fe344a" item_mute_bg="#ff5f83" text_active_color="#fff" text_mute_color="#fff" container_bg="#ff5f83" header_bg="#ff5f83" slot="container" :list_outside="true" :currentActivePage="0" :pageGroup_f="page_group" :optionsGroup_f="options_group" >
+				<brand-list v-for="(item,index) in page_group" :key="item.name" :id="index" ref="page" :slot="item.name" :parent_id="pageId" :header_offset="offsetHeight" @returnLoadmore="getLoadmore">
+					<cell>
+						<view class="cts-empty-column"></view>
+					</cell>
+					<cell recycle="false" v-if="item.loading">
+						<custom-elements-loading bg="transparent"></custom-elements-loading>
+					</cell>
+					<cell v-for="(item,index) in item.data">
+						<sindex-goods :group_f="item" bg="#ff5f83"></sindex-goods>
+					</cell>
+					<cell>
+						<custom-loadmore :show_f="item.loadmore" :nomore_f="item.nomore" bg="transparent" color="#fff"></custom-loadmore>
+					</cell>
+				</brand-list>
+			</custom-swiper-page>
+		</brand-container>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {nine} from '@/static/mixins/store/nine/nine.js'
+	import {nine_data} from '@/static/mixins/store/nine/nine_data.js'
+	import {nine_interaction} from '@/static/mixins/store/nine/nine_interaction.js'
+	export default {
+		mixins:[nine,nine_data,nine_interaction]
+	}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

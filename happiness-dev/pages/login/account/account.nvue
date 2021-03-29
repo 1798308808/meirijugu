@@ -1,0 +1,40 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="4" :mainTitle="' '" :rightText="'注册'"></custom-navbar>
+		<custom-container-in-navbar-page class="white">
+			<register-input v-for="(item,index) in group" :key="item.id"
+			 :id="item.id"
+			 :title="item.title" 
+			 :type="item.type"
+			 :placeholder="item.placeholder"
+			 :input_type="item.input_type"
+			 :max="item.max"
+			 :desc="item.desc"
+			 @returnInput="getInput"
+			 @returnSideButton="getSideButton"
+			 ></register-input>
+			<view @tap="isLoginReady">
+				<custom-button :type='2' :text="'登录'" :width="670"></custom-button>
+			</view>
+		</custom-container-in-navbar-page>
+		<login-bottom :reg="true"></login-bottom>
+		<custom-loading-cover v-if="cover"></custom-loading-cover>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {account} from '@/static/mixins/login/account/account.js'
+	import {account_data} from '@/static/mixins/login/account/account_data.js'
+	import {account_interaction} from '@/static/mixins/login/account/account_interaction.js'
+	import {unload} from '@/static/mixins/public/unload.js'
+	export default {
+		mixins:[account,account_data,account_interaction,unload]
+		
+	}
+</script>
+
+<style lang="scss" scoped>
+	.white{
+		background-color: $cts-all-white;
+	}
+</style>

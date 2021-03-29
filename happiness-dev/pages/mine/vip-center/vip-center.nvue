@@ -1,0 +1,49 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'会员中心'"></custom-navbar>
+		<custom-container-in-navbar-page>
+			<vip-center-header :name="name" :greetings="greetings" :group_f="group" :avatar="avatar">
+				<custom-card-banner :group_f="group" :custom="true" :current_f="current_vip_group" @returnCurrent="getCardBannerCurrent">
+					<vip-center-card :slot="item.id" v-for="(item,index) in group" :key="item.id"
+					:current_level_name="item.current_level_name"
+					:current="item.current"
+					:greetings="item.greetings"
+					:total_exp="item.total_exp"
+					:current_exp="item.current_exp"
+					:next_level_name="item.next_level_name"
+					:require="item.require"
+					:bg="item.bg"
+					:finish="item.finish"
+					:type="item.type"
+					></vip-center-card>
+				</custom-card-banner>
+			</vip-center-header>
+			<vip-center-rights :title="'会员权益'" :between="true">
+				<vip-center-empty :current="current_rights" :group="rights_group"></vip-center-empty>
+			</vip-center-rights>
+			<vip-center-rights v-if="mission_group.length>0" :title="'做任务提升经验值'">
+				<vip-center-rows-item v-for="(item,index) in mission_group" :key="index+'mission'" :src="item.src" :title="item.title" :num="item.num" :btn="item.btn"></vip-center-rows-item>
+			</vip-center-rights>
+			<vip-center-bounce v-if="bounce_group.length>0" :group="bounce_group"></vip-center-bounce>
+			<vip-center-rights :title="'关于我们'">
+				<vip-center-about :nodes="about_us"></vip-center-about>
+			</vip-center-rights>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {vip} from '@/static/mixins/mine/vip-center/vip-center.js'
+	import {vip_data} from '@/static/mixins/mine/vip-center/vip-center_data.js'
+	import {vip_interaction} from '@/static/mixins/mine/vip-center/vip-center_interaction.js'
+	export default {
+		mixins:[vip,vip_data,vip_interaction]
+	}
+</script>
+
+<style lang="scss" scoped>
+	.about{
+		width: 670rpx;
+		min-height: 200rpx;
+	}
+</style>

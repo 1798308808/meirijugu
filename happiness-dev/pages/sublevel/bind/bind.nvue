@@ -1,0 +1,40 @@
+<template>
+	<custom-container-with-navbar>
+		<custom-navbar :navbarType="2" :mainTitle="'填写单号'" ></custom-navbar>
+		<custom-container-in-navbar-page>
+			<settings-group :btn="true" :text="'确认绑定'" :title="'绑定支付宝，提现更方便'">
+				<custom-cell v-for="(item,index) in group" 
+				:key="item.title"
+				:title="item.title" 
+				:type="item.type" 
+				:mute="item.mute" 
+				:sub_title="item.sub" 
+				:high_light="item.light" 
+				:short="item.short"
+				:active_f.sync="item.active"
+				:pass_state_f="item.pass"
+				:id="item.id"
+				:val.sync="item.val"
+				:max="item.max"
+				:multiple="item.mul"
+				:options_f="item.options"
+				:input_type="item.input"
+				@returnInput="getInput"
+				@returnSelector="getSelector"
+				></custom-cell>
+			</settings-group>
+		</custom-container-in-navbar-page>
+	</custom-container-with-navbar>
+</template>
+
+<script>
+	import {bind} from '@/static/mixins/sublevel/bind/bind.js'
+	export default {
+		mixins:[bind]
+		
+	}
+</script>
+
+<style>
+
+</style>
